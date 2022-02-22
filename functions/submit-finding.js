@@ -286,11 +286,8 @@ exports.handler = async (event) => {
   const owner = process.env.CONTEST_GITHUB_REPO_OWNER;
 
   try {
-    const markdownPath = `data/${attributedTo}-${risk}.md`;
-    const qaOrGasSubmissionBody = dedent`
-      This report was too long to be submitted as a GitHub issue. 
-      [See the markdown file here](https://github.com/${owner}/${repo}/blob/main/${markdownPath}).
-    `;
+    const markdownPath = `data/${attributedTo}-${risk}-report.md`;
+    const qaOrGasSubmissionBody = `See the markdown file with the details of this report [here](https://github.com/${owner}/${repo}/blob/main/${markdownPath}).`;
     const isQaOrGasSubmission = Boolean(risk === "G" || risk === "1");
 
     const issueResult = await octokit.request(
